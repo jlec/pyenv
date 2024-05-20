@@ -1,0 +1,13 @@
+case "$(anaconda_architecture 2>/dev/null || true)" in
+"Linux-x86_64" )
+  install_script "Miniforge3-24.3.0-0-Linux-x86_64.sh" "https://github.com/conda-forge/miniforge/releases/download/24.3.0-0/Miniforge3-24.3.0-0-Linux-x86_64.sh#0be3654cc3b9c43d3aeeeca5efe6d2f31e9f7711702f3818529b367b3db677fb" "miniconda" verify_py310
+  ;;
+* )
+  { echo
+    colorize 1 "ERROR"
+    echo ": The binary distribution of Miniforge is not available for $(anaconda_architecture 2>/dev/null || true)."
+    echo
+  } >&2
+  exit 1
+  ;;
+esac
